@@ -1,4 +1,9 @@
 # coding=utf-8
+"""
+@author: John Mark Mayhall
+Last Edited: 11/19/2024
+Email: jmm0111@uah.edu
+"""
 import datetime as dt
 import os
 
@@ -105,10 +110,9 @@ if __name__ == '__main__':
                 kdp = (kdp >= -1) & (kdp <= 2)
                 final = Zh & Zdr & rho & kdp
                 final = final.astype(int)
+                plot_lst.append((np.count_nonzero(final == 1) / (801 * 801 * Zh.shape[0])) * 100)
                 final = np.vstack([lower, final])
-                print(np.unique(final))
                 grid_ktlh.fields.get('Lightning_Class')['data'] = final
-                plot_lst.append((np.count_nonzero(final == 1) / (801 * 801 * final.shape[0])) * 100)
                 # Setup the figure, and plot our x/y view of the radar
                 fig = plt.figure(figsize=(18, 6))
                 ax1 = plt.subplot(121, projection=ccrs.PlateCarree())

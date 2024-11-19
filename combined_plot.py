@@ -1,4 +1,9 @@
 # coding=utf-8
+"""
+@author: John Mark Mayhall
+Last Edited: 11/19/2024
+Email: jmm0111@uah.edu
+"""
 import datetime as dt
 import glob
 import os
@@ -18,6 +23,8 @@ if __name__ == '__main__':
     plotcross = True
     plotline = True
     plot_lst = []
+    plot_lst30_10 = []
+    plt_zdr = []
     field = 'Lightning_Class'
     level = 'lv2'
     day_lst = ['26', '27']
@@ -61,8 +68,13 @@ if __name__ == '__main__':
                         'Lightning_Class'],
             )
             Zh = grid_ktlh.fields.get('reflectivity').get('data')[np.where(grid_ktlh.z.get('data') >= height)[0][0]:]
+            line_data = grid_ktlh.fields.get(field).get('data')[np.where(grid_ktlh.z.get('data') == 7000)[0][0]:]
+            plot_lst30_10.append((np.count_nonzero(Zh >= 30.0) / (801 * 801 * Zh.shape[0])) * 100)
             Zdr = grid_ktlh.fields.get('differential_reflectivity').get('data')[np.where(grid_ktlh.z.get('data')
                                                                                          >= height)[0][0]:]
+            Zdr_0C = grid_ktlh.fields.get('differential_reflectivity').get('data')[np.where(grid_ktlh.z.get('data')
+                                                                                            >= 5500)[0][0]:]
+            plt_zdr.append((np.count_nonzero(Zdr_0C >= 1.0) / (801 * 801 * Zdr_0C.shape[0])) * 100)
             rho = grid_ktlh.fields.get('cross_correlation_ratio').get('data')[np.where(grid_ktlh.z.get('data')
                                                                                        >= height)[0][0]:]
             kdp = grid_ktlh.fields.get('kdp').get('data')[np.where(grid_ktlh.z.get('data') >= height)[0][0]:]
@@ -73,10 +85,9 @@ if __name__ == '__main__':
             kdp = (kdp >= -1) & (kdp <= 2)
             final = Zh & Zdr & rho & kdp
             final = final.astype(int)
+            plot_lst.append((np.count_nonzero(final == 1) / (801 * 801 * Zh.shape[0])) * 100)
             final = np.vstack([lower, final])
-            print(np.unique(final))
             grid_ktlh.fields.get('Lightning_Class')['data'] = final
-            plot_lst.append((np.count_nonzero(final == 1) / (801 * 801 * final.shape[0])) * 100)
 
     area_flash_df = pd.DataFrame(columns=['Time', 'Count'])
     area_flash_df_event = pd.DataFrame(columns=['Time', 'Count', 'Avg'])
@@ -124,10 +135,13 @@ if __name__ == '__main__':
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d - %H:%M'))
     plt.gca().xaxis.set_major_locator(mdates.HourLocator())
     plt.plot(list(avg_df.index), list(avg_df.values), label='GLM Lightning Flashes')
+    plt.plot(time_lst, np.array(plot_lst30_10) * 100, label='Pixels above 30dBZ (-10C Threshold)')
     plt.plot(time_lst, np.array(plot_lst) * 1000, label='Pixels most likely related to Lightning')
+    # plt.plot(time_lst, np.array(plt_zdr) * 10, label='Pixels above 1dB (0C Threshold)')
     plt.legend()
     plt.gcf().autofmt_xdate()
     plt.xlabel('Time (UTC)')
-    plt.title('Combined Scaled Lightning Related Pixels and Lightning Flashes Plot')
+    plt.title('Scaled Pixels above 30dBZ with a -10C Threshold and Lightning Related Pixels\n'
+              'along with Lightning Flash Count per 10 Minutes')
     plt.savefig('combined.jpg')
     plt.show()

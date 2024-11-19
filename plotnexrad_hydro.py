@@ -1,4 +1,9 @@
 # coding=utf-8
+"""
+@author: John Mark Mayhall
+Last Edited: 11/19/2024
+Email: jmm0111@uah.edu
+"""
 import datetime as dt
 import glob
 import os
@@ -157,7 +162,8 @@ if __name__ == '__main__':
                         vmax=50,
                     )
                     plt.savefig(
-                        f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/{level}-sept{day}-{variable}images-cross/{file}.jpg')
+                        f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/'
+                        f'{level}-sept{day}-{variable}images-cross/{file}.jpg')
                     plt.close('all')
                 except IndexError:
                     print(f'Skipping: {time}')

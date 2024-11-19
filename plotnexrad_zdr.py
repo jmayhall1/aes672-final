@@ -1,4 +1,9 @@
 # coding=utf-8
+"""
+@author: John Mark Mayhall
+Last Edited: 11/19/2024
+Email: jmm0111@uah.edu
+"""
 import datetime as dt
 import os
 

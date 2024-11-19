@@ -1,4 +1,9 @@
 # coding=utf-8
+"""
+@author: John Mark Mayhall
+Last Edited: 11/19/2024
+Email: jmm0111@uah.edu
+"""
 import datetime as dt
 import os
 
@@ -147,8 +152,8 @@ if __name__ == '__main__':
 
         plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d - %H:%M'))
         plt.gca().xaxis.set_major_locator(mdates.HourLocator())
-        plt.plot(time_lst, plot_lst30, label='Pixels above 30dBZ')
-        plt.plot(time_lst, plot_lst40, label='Pixels above 40dBz')
+        plt.plot(time_lst, plot_lst30_10, label='Pixels above 30dBZ')
+        plt.plot(time_lst, plot_lst40_10, label='Pixels above 40dBz')
         plt.legend()
         plt.gcf().autofmt_xdate()
         plt.xlabel('Time (UTC)')

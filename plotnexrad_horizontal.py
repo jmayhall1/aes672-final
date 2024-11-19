@@ -1,4 +1,9 @@
 # coding=utf-8
+"""
+@author: John Mark Mayhall
+Last Edited: 11/19/2024
+Email: jmm0111@uah.edu
+"""
 import datetime as dt
 import glob
 import os
@@ -25,24 +30,24 @@ if __name__ == '__main__':
     # cbar_vmax = 70
     # time1 = 31505
     # time2 = 315
-    start = (29.71, -83.5)
-    end = (29.7, -84.4)
-    cbar_vmin = -10
-    cbar_vmax = 70
-    time1 = 13605
-    time2 = 136
+    # start = (29.71, -83.5)
+    # end = (29.7, -84.4)
+    # cbar_vmin = -10
+    # cbar_vmax = 70
+    # time1 = 13605
+    # time2 = 136
     # start = (29.51, -83.5)
     # end = (29.5, -84.4)
     # cbar_vmin = -10
     # cbar_vmax = 70
     # time1 = 10229
     # time2 = 102
-    # start = (29.37, -83.5)
-    # end = (29.36, -84.4)
-    # cbar_vmin = -10
-    # cbar_vmax = 70
-    # time1 = 4235
-    # time2 = 42
+    start = (29.37, -83.5)
+    end = (29.36, -84.4)
+    cbar_vmin = -10
+    cbar_vmax = 70
+    time1 = 4235
+    time2 = 42
     degree = u'\N{DEGREE SIGN}'
     location_string = (f'({start[0]}{degree}N, {str(start[1])[1:]}{degree}W) to '
                        f'({end[0]}{degree}N, {str(end[1])[1:]}{degree}W)')
@@ -99,12 +104,12 @@ if __name__ == '__main__':
                 cmap=color_map,
                 title=title2,
                 colorbar_label=label,
-                x_axis="lat",
+                x_axis="lon",
                 vmin=cbar_vmin,
                 vmax=cbar_vmax,
             )
             plt.savefig(
-                f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal_cross/{file}_{field}.jpg')
+                f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal-cross/{file}_{field}.jpg')
             plt.close('all')
             fig = plt.figure(figsize=(12, 4))
             display = pyart.graph.RadarMapDisplay(radar)
@@ -188,7 +193,7 @@ if __name__ == '__main__':
                 title='',
                 cmap=color_map,
                 colorbar_label=label2,
-                x_axis="lat",
+                x_axis="lon",
                 vmin=cbar_vmin,
                 vmax=cbar_vmax,
             )
@@ -200,12 +205,12 @@ if __name__ == '__main__':
                 title=title2,
                 cmap='gray',
                 colorbar_label='',
-                x_axis="lat",
+                x_axis="lon",
                 vmin=0,
                 vmax=50,
             )
             plt.savefig(
-                f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal_cross/{file}_{field}.jpg')
+                f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal-cross/{file}_{field}.jpg')
             plt.close('all')
             fig = plt.figure(figsize=(12, 4))
             display = pyart.graph.RadarMapDisplay(radar)
@@ -290,7 +295,7 @@ if __name__ == '__main__':
                 cmap=color_map,
                 title='',
                 colorbar_label=label2,
-                x_axis="lat",
+                x_axis="lon",
                 vmin=cbar_vmin,
                 vmax=cbar_vmax,
             )
@@ -302,12 +307,12 @@ if __name__ == '__main__':
                 alpha=0.4,
                 cmap='gray',
                 colorbar_label='',
-                x_axis="lat",
+                x_axis="lon",
                 vmin=0,
                 vmax=50,
             )
             plt.savefig(
-                f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal_cross/{file}_{field}.jpg')
+                f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal-cross/{file}_{field}.jpg')
             plt.close('all')
             fig = plt.figure(figsize=(12, 4))
             display = pyart.graph.RadarMapDisplay(radar)
@@ -424,7 +429,7 @@ if __name__ == '__main__':
                     vmax=vmax,
                     colorbar_label=label2,
                     title='',
-                    x_axis="lat",
+                    x_axis="lon",
                 )
                 display_nex.plot_cross_section(
                     'reflectivity',
@@ -433,13 +438,13 @@ if __name__ == '__main__':
                     alpha=0.5,
                     cmap='gray',
                     colorbar_label='',
-                    x_axis="lat",
+                    x_axis="lon",
                     title=title2,
                     vmin=0,
                     vmax=50,
                 )
                 plt.savefig(
-                    f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal_cross/{file}_{field}.jpg')
+                    f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal-cross/{file}_{field}.jpg')
                 plt.close('all')
             except IndexError:
                 continue
@@ -566,7 +571,7 @@ if __name__ == '__main__':
                     vmax=vmax,
                     colorbar_label=label2,
                     title='',
-                    x_axis="lat",
+                    x_axis="lon",
                 )
                 display_nex.plot_cross_section(
                     'reflectivity',
@@ -575,13 +580,13 @@ if __name__ == '__main__':
                     alpha=0.5,
                     cmap='gray',
                     colorbar_label='',
-                    x_axis="lat",
+                    x_axis="lon",
                     title=title2,
                     vmin=0,
                     vmax=50,
                 )
                 plt.savefig(
-                    f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal_cross/{file}_{field}.jpg')
+                    f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal-cross/{file}_{field}.jpg')
                 plt.close('all')
             except IndexError:
                 continue
@@ -697,7 +702,7 @@ if __name__ == '__main__':
                 ticks=ticks,
                 ticklabs=cbar_labels,
                 colorbar_label=label2,
-                x_axis="lat",
+                x_axis="lon",
                 vmin=cbar_vmin,
                 vmax=cbar_vmax,
             )
@@ -709,12 +714,12 @@ if __name__ == '__main__':
                 title=title2,
                 cmap='gray',
                 colorbar_label='',
-                x_axis="lat",
+                x_axis="lon",
                 vmin=0,
                 vmax=50,
             )
             plt.savefig(
-                f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal_cross/{file}_{field}.jpg')
+                f'C:/Users/jmayhall/Downloads/aes672_projectproposal/ktlh_data/horizontal-cross/{file}_{field}.jpg')
             plt.close('all')
             fig = plt.figure(figsize=(12, 4))
             display = pyart.graph.RadarMapDisplay(radar)
